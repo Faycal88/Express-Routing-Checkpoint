@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/time.css">
+    <title><%- title %></title>
+</head>
+<body>
+    
+    <p class="clock" id="demo"></p>
+    <p class="text" >The web application is only available during working hours <br> (Monday to Friday,  from 9AM).</p>
+
+<script>
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  
+  var distance = Number(document.title) - now;
+  console.log(distance);
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "WE WILL BE OPENING SOON";
+  }
+}, 1000);
+</script>
+</body>
+</html>
